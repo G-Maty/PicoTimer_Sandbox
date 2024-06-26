@@ -2,46 +2,43 @@
 #include <stdio.h>
 
 #define TIME_SET 1000
-#define STBUTTON_PIN 2
-#define CDOWN_PIN 16
-#define CUP_PIN 18
+#define LED 16
+#define BT1 21
+#define BT2 20
+#define BT3 10
+#define BT4 11
 
-void timer_test(){
-  int i;
-  for(i=0;i<TIME_SET;++i){
-
-  }
-  printf("1s");
-  digitalWrite(LED_BUILTIN,1);
-}
 
 void setup() {  // 初期設定
   pinMode(LED_BUILTIN, OUTPUT);     // LED端子を出力に設定
-  pinMode(STBUTTON_PIN, INPUT);
-  pinMode(CUP_PIN, INPUT);
-  pinMode(CDOWN_PIN, INPUT);
+  /*
+  内部のプルダウンを使用
+  プルダウンを使用しないと閉回路が形成されず、
+  動作不安定になる
+  */
+  pinMode(BT1, INPUT_PULLDOWN);
+  pinMode(BT2, INPUT_PULLDOWN);
+  pinMode(BT3, INPUT_PULLDOWN);
+  pinMode(BT4, INPUT_PULLDOWN);
 
 }
 void loop() {
-  /*   // メイン処理（繰り返し）
-  digitalWrite(LED_BUILTIN, HIGH);  // LEDを点灯
-  delay(500);                       // 0.5秒待つ
-  digitalWrite(LED_BUILTIN, LOW);   // LEDを消灯
-  delay(500);
-  */
-  if(digitalRead(STBUTTON_PIN) == 1){
+  if(digitalRead(BT1) == 1){
     digitalWrite(LED_BUILTIN, 1);
   }else{
     digitalWrite(LED_BUILTIN, 0);
   }
-
-  if(digitalRead(CUP_PIN) == 0){
+  if(digitalRead(BT2) == 1){
     digitalWrite(LED_BUILTIN, 1);
   }else{
     digitalWrite(LED_BUILTIN, 0);
   }
-
-  if(digitalRead(CDOWN_PIN) == 0){
+  if(digitalRead(BT3) == 1){
+    digitalWrite(LED_BUILTIN, 1);
+  }else{
+    digitalWrite(LED_BUILTIN, 0);
+  }
+  if(digitalRead(BT4) == 1){
     digitalWrite(LED_BUILTIN, 1);
   }else{
     digitalWrite(LED_BUILTIN, 0);
